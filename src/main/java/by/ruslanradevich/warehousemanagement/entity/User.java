@@ -19,11 +19,6 @@ import javax.persistence.Table;
 @ToString
 public class User extends AbstractModelId {
 
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
 
     @Column(nullable = false)
     private String username;
