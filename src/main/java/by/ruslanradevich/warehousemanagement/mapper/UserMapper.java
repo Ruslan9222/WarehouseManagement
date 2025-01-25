@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-    public User createUserToEntity(CreateUserDto createUserDto){
+    public User createUserToEntity(CreateUserDto createUserDto) {
         User user = new User();
         user.setUsername(createUserDto.getUsername());
         user.setPassword(createUserDto.getPassword());

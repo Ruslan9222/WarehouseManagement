@@ -24,12 +24,10 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserRepository userRepository;
     private final UserService userService;
     private final UserMapper userMapper;
 
     public UserController(UserRepository userRepository, UserService userService, UserMapper userMapper) {
-        this.userRepository = userRepository;
         this.userService = userService;
         this.userMapper = userMapper;
     }
@@ -45,7 +43,7 @@ public class UserController {
         return "user/home";
     }
 
-    @PostMapping("/new")
+    @GetMapping("/new")
     public String showFormForNewUser(Model model) {
         CreateUserDto createUserDto = new CreateUserDto();
         model.addAttribute("user", createUserDto);
@@ -80,8 +78,8 @@ public class UserController {
         return "user/home";
     }
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, HttpSession session) {
-        userService.deleteUser();
+    public String delete(@PathVariable("id") User id, HttpSession session) {
+        userService.deleteUser(id);
         session.invalidate();
         return "user/home";
     }
