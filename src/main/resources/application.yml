@@ -4,9 +4,12 @@ hibernate:
   format_sql: true
   hbm2ddl:
     auto: drop-and-create
+    hibernate:
+      cache:
+        use_second_level_cache: true
 
 datasource:
   driver-class-name: org.postgresql.Driver
-  url: jdbc:postgresql://localhost:5432/postgres
+  url: jdbc:postgresql://localhost:5432/warehouse_db
   username: postgres
   password: root
