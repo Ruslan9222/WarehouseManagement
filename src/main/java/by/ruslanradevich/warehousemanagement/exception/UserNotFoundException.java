@@ -1,4 +1,4 @@
-package by.ruslanradevich.warehousemanagement.Exception;
+package by.ruslanradevich.warehousemanagement.exception;
 
 
 public class UserNotFoundException extends RuntimeException {

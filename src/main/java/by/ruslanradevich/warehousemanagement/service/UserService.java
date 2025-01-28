@@ -1,6 +1,6 @@
 package by.ruslanradevich.warehousemanagement.service;
 
-import by.ruslanradevich.warehousemanagement.Exception.UserNotFoundException;
+import by.ruslanradevich.warehousemanagement.exception.UserNotFoundException;
 import by.ruslanradevich.warehousemanagement.entity.User;
 import by.ruslanradevich.warehousemanagement.repository.UserRepository;
 import org.apache.log4j.Logger;
