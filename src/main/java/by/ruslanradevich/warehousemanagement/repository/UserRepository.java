@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepository implements IBaseRepository<User, Long> {
@@ -50,4 +51,11 @@ public class UserRepository implements IBaseRepository<User, Long> {
             return session.createQuery("from User ", User.class).list();
         }
     }
+
+    public Optional<User> findByUsername(String username) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return Optional.ofNullable(session.get(User.class, username));
+        }
+    }
+
 }

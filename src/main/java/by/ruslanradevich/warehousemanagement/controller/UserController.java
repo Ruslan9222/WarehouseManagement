@@ -65,6 +65,7 @@ public class UserController {
         userService.save(userMapper.createUserToEntity(createUserDto));
         return "user/home";
     }
+
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("user") LoginUserDto loginUserDto,
                         BindingResult bindingResult,
@@ -73,10 +74,11 @@ public class UserController {
             return "user/login";
         }
         User user = userMapper.loginUserToEntity(loginUserDto);
-        session.setAttribute("currentUser", userService.getUserById(user.getId()));
-        System.out.println(userService.getUserById(user.getId()));
+        session.setAttribute("currentUser", userService.getUserByName(user.getUsername()));
+        System.out.println(userService.getUserByName(user.getUsername()));
         return "user/home";
     }
+
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable("id") User id, HttpSession session) {
         userService.deleteUser(id);
