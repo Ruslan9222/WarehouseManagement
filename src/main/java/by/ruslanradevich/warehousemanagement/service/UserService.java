@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -21,14 +20,24 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(User user) {
+    public void updateUserPassword(String username, String newPassword) {
+        Logger logger = Logger.getLogger(UserService.class.getName());
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> {
+                    String message = "User not found: " + username;
+                    logger.warn(message);
+                    return new UserNotFoundException(message);
+                });
+
+        user.setPassword(newPassword);
         userRepository.update(user);
+        logger.info("Password updated successfully for user: " + username);
     }
 
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
-
 
     public User getUserByName(String username) {
         Logger logger = Logger.getLogger(UserService.class.getName());
