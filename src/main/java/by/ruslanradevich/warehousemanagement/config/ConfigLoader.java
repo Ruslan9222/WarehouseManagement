@@ -3,11 +3,12 @@ package by.ruslanradevich.warehousemanagement.config;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigLoader {
     private static final Map<String, Object> applicationConfig;
-    private static final Map<String, String> secretConfig;
+    private static final Map<String, String>  secretConfig= new HashMap<>();
 
     static {
         try (InputStream inputStream = ConfigLoader.class.getClassLoader().getResourceAsStream("application.yml")) {
@@ -16,11 +17,11 @@ public class ConfigLoader {
             throw new RuntimeException("Failed to load application.yml", e);
         }
 
-        try (InputStream inputStream = ConfigLoader.class.getClassLoader().getResourceAsStream("secret-settings.yml")) {
-            secretConfig = new Yaml().load(inputStream);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to load secret-settings.yml", e);
-        }
+//        try (InputStream inputStream = ConfigLoader.class.getClassLoader().getResourceAsStream("secret-settings.yml")) {
+//            secretConfig = new Yaml().load(inputStream);
+//        } catch (Exception e) {
+//            throw new RuntimeException("Failed to load secret-settings.yml", e);
+//        }
     }
 
     public static String get(String key) {

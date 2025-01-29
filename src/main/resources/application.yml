@@ -3,7 +3,7 @@ hibernate:
   show_sql: true
   format_sql: true
   hbm2ddl:
-    auto: drop-and-create
+    auto: update
     hibernate:
       cache:
         use_second_level_cache: true

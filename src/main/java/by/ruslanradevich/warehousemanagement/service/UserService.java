@@ -43,14 +43,6 @@ public class UserService {
         Logger logger = Logger.getLogger(UserService.class.getName());
 
         return userRepository.findByUsername(username)
-                .filter(user -> user.getUsername().equals(username))
-                .map(user -> {
-                    User byUser = new User();
-                    byUser.setUsername(user.getUsername());
-                    byUser.setId(user.getId());
-                    byUser.setPassword(user.getPassword());
-                    return byUser;
-                })
                 .orElseThrow(() -> {
                     String message = "User not found: " + username;
                     logger.warn(message);
